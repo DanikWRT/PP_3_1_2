@@ -48,7 +48,7 @@ public class UserController {
         model.addAttribute("user", new User());
         return "addUser";
     }
-    //метод добавление Пользователя
+    //метод добавление Пользователя по сабмиту
     @PostMapping(value = "/users/add")
     public String addUser(@ModelAttribute User user) {
         userService.addUser(user);
