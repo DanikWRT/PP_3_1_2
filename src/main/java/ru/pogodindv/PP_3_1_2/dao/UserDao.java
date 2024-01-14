@@ -4,14 +4,14 @@ import ru.pogodindv.PP_3_1_2.model.User;
 
 import java.util.List;
 
-public interface UserDao {
-    List<User> getAllUsers();
+public abstract class UserDao {
+    public abstract List<User> getAllUsers();
 
-    void addUser(User user);
+    public abstract void addUser(User user);
 
-    void deleteUser(User user);
+    public abstract void deleteUser(User user);
 
-    void editUser(User user);
+    public abstract void editUser(User user);
 
-    User getUserById(Long id);
+    public abstract User getUserById(Long id);
 }

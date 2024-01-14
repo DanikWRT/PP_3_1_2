@@ -1,6 +1,7 @@
 package ru.pogodindv.PP_3_1_2.dao;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.pogodindv.PP_3_1_2.model.User;
 
 import jakarta.persistence.EntityManager;
@@ -9,7 +10,8 @@ import jakarta.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class UserDaoImpl implements UserDao {
+@Transactional(readOnly = true)
+public class UserDaoImpl extends UserDao {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -18,17 +20,17 @@ public class UserDaoImpl implements UserDao {
     public List<User> getAllUsers() {
         return entityManager.createQuery("FROM User", User.class).getResultList();
     }
-
+    @Transactional
     @Override
     public void addUser(User user) {
         entityManager.persist(user);
     }
-
+    @Transactional
     @Override
     public void deleteUser(User user) {
         entityManager.createQuery("DELETE FROM User WHERE id = :id").setParameter("id", user.getId()).executeUpdate();
     }
-
+    @Transactional
     @Override
     public void editUser(User user) {
         entityManager.merge(user);
