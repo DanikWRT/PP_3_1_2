@@ -5,6 +5,7 @@ import ru.pogodindv.PP_3_1_2.model.User;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+
 import java.util.List;
 
 @Repository
@@ -12,15 +13,14 @@ public class UserDaoImpl implements UserDao {
 
     @PersistenceContext
     private EntityManager entityManager;
+
     @Override
-    public List<User> allUsers() {
+    public List<User> getAllUsers() {
         return entityManager.createQuery("FROM User", User.class).getResultList();
     }
 
     @Override
     public void addUser(User user) {
-//        film.setId(AUTO_ID.getAndIncrement());
-//        films.put(film.getId(), film);
         entityManager.persist(user);
     }
 

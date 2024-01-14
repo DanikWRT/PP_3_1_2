@@ -7,18 +7,20 @@ import ru.pogodindv.PP_3_1_2.dao.UserDao;
 import ru.pogodindv.PP_3_1_2.model.User;
 
 import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
-    //    private FilmDao filmDao = new FilmDaoImpl();
-    UserDao userDao;
+
+    private UserDao userDao;
+
     @Transactional
     @Override
-    public List<User> allUsers() {
-        return userDao.allUsers();
+    public List<User> getAllUsers() {
+        return userDao.getAllUsers();
     }
 
     @Override
@@ -26,16 +28,19 @@ public class UserServiceImpl implements UserService {
     public void addUser(User user) {
         userDao.addUser(user);
     }
+
     @Transactional
     @Override
     public void deleteUser(User user) {
         userDao.deleteUser(user);
     }
+
     @Transactional
     @Override
     public void editUser(User user) {
         userDao.editUser(user);
     }
+
     @Transactional
     @Override
     public User getUserById(Long id) {

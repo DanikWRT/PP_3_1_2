@@ -22,8 +22,8 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public ModelAndView allUsers() {
-        List<User> users = userService.allUsers();
+    public ModelAndView getAllUsers() {
+        List<User> users = userService.getAllUsers();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("users");
         modelAndView.addObject("userList", users);
@@ -35,6 +35,7 @@ public class UserController {
         model.addAttribute("user", userService.getUserById(id));
         return "editUser";
     }
+
     @PostMapping(value = "/users/edit")
     public String editSubmit(@ModelAttribute User user) {
         userService.editUser(user);
@@ -48,6 +49,7 @@ public class UserController {
         model.addAttribute("user", new User());
         return "addUser";
     }
+
     //метод добавление Пользователя по сабмиту
     @PostMapping(value = "/users/add")
     public String addUser(@ModelAttribute User user) {
@@ -55,6 +57,7 @@ public class UserController {
         return "redirect:/users";
 
     }
+
     @GetMapping(value = "/users/delete")
     public String deleteUser(@RequestParam("id") Long id) {
         User user = userService.getUserById(id);
