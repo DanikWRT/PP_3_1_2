@@ -13,13 +13,12 @@ import java.util.List;
 @Controller
 @RequestMapping
 public class UserController {
+    private UserService userService;
 
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
-
-    private UserService userService;
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ModelAndView getAllUsers() {
@@ -40,7 +39,6 @@ public class UserController {
     public String editSubmit(@ModelAttribute User user) {
         userService.editUser(user);
         return "redirect:/users";
-
     }
 
     //страница добавления Пользователя
@@ -55,7 +53,6 @@ public class UserController {
     public String addUser(@ModelAttribute User user) {
         userService.addUser(user);
         return "redirect:/users";
-
     }
 
     @GetMapping(value = "/users/delete")
